@@ -24,8 +24,18 @@ const items = [
 const Logo = styled.div`
   margin: 30px 0;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   img {
-    width: 200px;
+    width: 150px;
+  }
+  span {
+    color: #ffff;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-family: 'Francois One', sans-serif;
   }
 `
 
@@ -60,7 +70,11 @@ const Sidebar = ({ isOpen, onOpen, onClose }) => {
     >
       <List>
         <Logo>
+           <span>
+            FastBandeco
+          </span>
           <img src={logoUsp} alt={'logo'} />
+
         </Logo>
         {items.map(item => (
           <ListItem key={item.label} onClick={item.onClick}>
