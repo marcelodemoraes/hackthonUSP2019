@@ -70,15 +70,15 @@ const ScheduledTime = () => {
         { scheduled ? (
           <>
             <TimeWrapper>
-          <span>
-            Você agendou:
-          </span>
               <span>
-            {data.time}h
-          </span>
-              <span>
-            {formatDate(new Date())}
-          </span>
+                Você agendou:
+              </span>
+                  <span>
+                {data.time}h
+              </span>
+                  <span>
+                {formatDate(new Date())}
+              </span>
             </TimeWrapper>
             <ButtonWrapper>
               <Button variant={'contained'} color={'primary'} onClick={() => navigate('/mobile/schedule')}>

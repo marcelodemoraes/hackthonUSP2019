@@ -1,69 +1,47 @@
 import React from 'react';
-import { Router } from '@reach/router'
-import { createGlobalStyle } from 'styled-components';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
+import { Router } from '@reach/router';
+import { navigate } from '@reach/router';
+import styled from 'styled-components';
+import { CircularProgress } from '@material-ui/core'
 
 import ScheduledTime from '../mobile/ScheduledTime';
 import ScheduleTime from '../mobile/ScheduleTime';
 import Dashboard from '../dashboard/Dashboard';
-
-const backgroundImage = require('../../assets/background.jpg')
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: #283761;
-    background-image: url(${backgroundImage});
-    background-repeat: no-repeat;
-    margin: 0;
-  }
-  #root {
-    background: linear-gradient(45deg, #0c3e88fa, #283761ba);
-  }
-  * {
-    font-family: Open Sans, sans-serif;
-  }
-`
-
-const theme = createMuiTheme(
-  {
-    palette: {
-      primary: {
-        main: '#8C3ECE'
-      },
-      secondary: {
-        main:'#FFFCFC'
-      }
-    },
-    overrides: {
-      MuiButton: {
-        root: {
-          textTransform: 'none',
-          fontSize: 22,
-          borderRadius: 30
-        }
-      },
-      MuiDialog: {
-        paper: {
-          borderRadius: 15
-        }
-      }
-    }
-
-  }
-)
+import Login from '../mobile/Login';
+import {isLoggedIn} from '../mobile/utils';
 
 
-const App = () => {
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+`;
+
+const AppRouter = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
+  React.useEffect(() => {
+    const { pathname } = window.location;
+    if(pathname !== '/login' && !isLoggedIn()) {
+      setIsLoading(false);
+      navigate('/login')
+    } else setIsLoading(false);
+  }, []);
+
+  if (isLoading) return (
+    <Wrapper>
+      <CircularProgress color={'secondary'}/>
+    </Wrapper>
+  )
   return (
-    <MuiThemeProvider theme={theme}>
-      <GlobalStyle/>
-      <Router>
-        <ScheduleTime path={'/mobile/schedule'}/>
-        <ScheduledTime path={'/mobile/scheduled'} default/>
-        <Dashboard path={'/dashboard'}/>
-      </Router>
-    </MuiThemeProvider>
+    <Router>
+      <ScheduleTime path={'/mobile/schedule'}/>
+      <ScheduledTime path={'/mobile/scheduled'} default/>
+      <Dashboard path={'/dashboard'}/>
+      <Login path={'/login'}/>
+    </Router>
   )
 }
 
-export default App;
+export default AppRouter;

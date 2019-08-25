@@ -55,8 +55,8 @@ const ScheduleTime = () => {
   return (
     <Content headerLabel={'Agendar Horário'}>
       <Wrapper>
-        {freeSlots.map(({ time, slots }) => <ScheduleCard time={time} slots={slots}/>)}
-        {fullSlots.map(({ time, slots }) => <ScheduleCard time={time} slots={slots}/>)}
+        {freeSlots.map(({ time, slots }) => <ScheduleCard key={time} time={time} slots={slots}/>)}
+        {fullSlots.map(({ time, slots }) => <ScheduleCard key={time} time={time} slots={slots}/>)}
       </Wrapper>
     </Content>
   )

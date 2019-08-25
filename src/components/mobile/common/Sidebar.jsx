@@ -5,18 +5,21 @@ import styled from 'styled-components';
 import { navigate } from '@reach/router'
 import CalendarToday from '@material-ui/icons/CalendarToday'
 import Alarm from '@material-ui/icons/Alarm';
+import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
+import {logout} from '../utils'
+import { Link } from '@reach/router';
 
 const logoUsp = require('../../../assets/uspBranco.png');
 
 const items = [
   {
     label: 'Horário Agendado',
-    onClick: () => navigate('/mobile/scheduled'),
+    to: '/mobile/scheduled',
     icon: <Alarm/>
   },
   {
     label: 'Agendar Horário',
-    onClick: () => navigate('/mobile/schedule'),
+    to: '/mobile/schedule',
     icon: <CalendarToday/>
   },
 ]
@@ -39,6 +42,14 @@ const StyledSidebar = styled(SwipeableDrawer)`
   .MuiDrawer-paper {
     background-color: #381654 !important;
   }
+  .active {
+    * {
+      color: #a272ca;
+    }
+  }
+  a {
+    text-decoration: none;
+  }
   @supports (backdrop-filter: none) {
     .MuiDrawer-paper {
       background-color: transparent !important;
@@ -50,6 +61,29 @@ const StyledSidebar = styled(SwipeableDrawer)`
     width: 260px;  
   }
 `;
+
+const Item = ({ label, onClick, icon, to }) => {
+  if (to) {
+    return (
+      <Link
+        to={to}
+        getProps={({ isCurrent }) => isCurrent ? { className: "active" } : null}
+      >
+        <ListItem key={label} style={{ cursor: 'pointer' }}>
+          <ListItemIcon  style={{ color: '#FFFFFF'}}>{icon}</ListItemIcon>
+          <ListItemText primary={label} style={{ color: '#FFFFFF', fontWeight: 'bold'}}/>
+          <ListItemIcon  style={{ color: '#FFFFFF'}}>{<ChevronRight />}</ListItemIcon>
+        </ListItem>
+      </Link>
+    )
+  }
+  return (
+    <ListItem key={label} onClick={onClick} style={{ cursor: 'pointer' }}>
+      <ListItemIcon  style={{ color: '#FFFFFF'}}>{icon}</ListItemIcon>
+      <ListItemText primary={label} style={{ color: '#FFFFFF', fontWeight: 'bold'}}/>
+    </ListItem>
+  )
+}
 
 const Sidebar = ({ isOpen, onOpen, onClose }) => {
   return (
@@ -63,12 +97,16 @@ const Sidebar = ({ isOpen, onOpen, onClose }) => {
           <img src={logoUsp} alt={'logo'} />
         </Logo>
         {items.map(item => (
-          <ListItem key={item.label} onClick={item.onClick}>
-            <ListItemIcon  style={{ color: '#FFFFFF'}}>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.label} style={{ color: '#FFFFFF', fontWeight: 'bold'}}/>
-            <ListItemIcon  style={{ color: '#FFFFFF'}}>{<ChevronRight />}</ListItemIcon>
-          </ListItem>
+          <Item {...item} key={item.label}/>
         ))}
+        <Item
+          onClick={() => {
+            logout()
+            navigate('/login')
+          }}
+          label={'Sair'}
+          icon={<PowerSettingsNew/>}
+        />
       </List>
     </StyledSidebar>
   )
