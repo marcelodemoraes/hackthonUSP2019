@@ -7,10 +7,19 @@ import ScheduleCard from './ScheduleCard'
 export const MAX_SLOTS = 100;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   min-height: calc(100vh - 105px);
   margin-top: 30px;
+`
+
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media(min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 `
 
 const periods = [
@@ -55,8 +64,10 @@ const ScheduleTime = () => {
   return (
     <Content headerLabel={'Agendar Horário'}>
       <Wrapper>
-        {freeSlots.map(({ time, slots }) => <ScheduleCard key={time} time={time} slots={slots}/>)}
-        {fullSlots.map(({ time, slots }) => <ScheduleCard key={time} time={time} slots={slots}/>)}
+        <CardWrapper>
+          {freeSlots.map(({ time, slots }) => <ScheduleCard key={time} time={time} slots={slots}/>)}
+          {fullSlots.map(({ time, slots }) => <ScheduleCard key={time} time={time} slots={slots}/>)}
+        </CardWrapper>
       </Wrapper>
     </Content>
   )

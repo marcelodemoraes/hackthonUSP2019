@@ -20,8 +20,11 @@ const Card = styled(ButtonBase)`
     align-items: center;
     font-size: 40px;
     text-align: center;
+    @media(min-width: 800px) {
+      width: 30%;
+    }
     > span {
-      width: 100%;
+      width: 100%;     
     }
   }
 `
