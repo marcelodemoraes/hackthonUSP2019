@@ -5,10 +5,9 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 
 import ScheduledTime from '../mobile/ScheduledTime';
 import ScheduleTime from '../mobile/ScheduleTime';
+import Dashboard from '../dashboard/Dashboard';
 
 const backgroundImage = require('../../assets/background.jpg')
-
-const NotFound = () => (<div> NOT FOUND </div>)
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -61,6 +60,7 @@ const App = () => {
       <Router>
         <ScheduleTime path={'/mobile/schedule'}/>
         <ScheduledTime path={'/mobile/scheduled'} default/>
+        <Dashboard path={'/dashboard'}/>
       </Router>
     </MuiThemeProvider>
   )

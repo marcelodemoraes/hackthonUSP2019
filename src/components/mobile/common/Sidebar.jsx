@@ -37,8 +37,14 @@ const StyledSidebar = styled(SwipeableDrawer)`
     min-width: 30px;
   }
   .MuiDrawer-paper {
-    backdrop-filter: blur(4px);
-    background: linear-gradient(45deg, transparent, transparent);
+    background-color: #381654 !important;
+  }
+  @supports (backdrop-filter: none) {
+    .MuiDrawer-paper {
+      background-color: transparent !important;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(45deg, transparent, transparent);
+    }
   }
   .MuiDrawer-paperAnchorLeft {
     width: 260px;  
