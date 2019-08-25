@@ -6,6 +6,7 @@ import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Content from './common/Content';
 import UserPerDay from './charts/UserPerDay';
 import CostPerDay from './charts/CostPerDay';
+import WastePerDay from './charts/WastePerDay';
 import Card from './charts/Card';
 
 const Row = styled.div`
@@ -61,23 +62,23 @@ const Widget = ({ label, value, statistics }) => {
 const widgetData = [
   {
     label: 'Refeições Servidas',
-    value: 1000,
+    value: 968,
     statistics: 15.5
   },
   {
-    label: 'Refeições Servidas',
-    value: 1000,
-    statistics: -15.5
+    label: 'Expectativa de Usuários',
+    value: 1254,
+    statistics: 10.3
   },
   {
-    label: 'Refeições Servidas',
-    value: 1000,
-    statistics: 15.5
+    label: 'Média de Permanência',
+    value: '23 min',
+    statistics: -9.3
   },
   {
-    label: 'Refeições Servidas',
-    value: 1000,
-    statistics: -15.5
+    label: 'Expectativa de Permanência',
+    value: '22 min',
+    statistics: -8.3
   },
 ]
 
@@ -90,7 +91,7 @@ const Dashboard = () => {
       <UserPerDay width={1540} height={600}/>
       <Row>
         <CostPerDay />
-        <CostPerDay />
+        <WastePerDay />
       </Row>
     </Content>
   )
