@@ -10,7 +10,17 @@ const StyledHeader = styled.header`
   color: #ffffff;
   font-size: 20px;
   display: flex;
-  align-items: center;  
+  align-items: center;
+  width: 100%;
+  z-index: 1;
+  background-color: #381654 !important;
+  @supports (backdrop-filter: none) {
+    & {
+      background-color: transparent !important;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(0deg, transparent, transparent);
+    }
+  }
 `;
 
 const Column = styled.div`

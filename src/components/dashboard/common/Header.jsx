@@ -12,9 +12,14 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   width: 100%;
-  backdrop-filter: blur(10px);
-  //background-color: #0c3e88fa;
-  background: linear-gradient(45deg, #00000054, #00000054);
+  background-color: #381654 !important;
+  @supports (backdrop-filter: none) {
+    & {
+      background-color: transparent !important;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(0deg, transparent, transparent);
+    }
+  }
 `;
 
 const Column = styled.div`

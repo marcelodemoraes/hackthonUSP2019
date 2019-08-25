@@ -44,8 +44,14 @@ const Slots = styled.div`
 
 const Modal = styled(Dialog)`
   && {
-    backdrop-filter: blur(4px);
-    background: linear-gradient(45deg, transparent, transparent);
+    background-color: #381654 !important;
+    @supports (backdrop-filter: none) {
+      & {
+        background-color: transparent !important;
+        backdrop-filter: blur(10px);
+        background: linear-gradient(0deg, transparent, transparent);
+      }
+    }
   }
 `
 

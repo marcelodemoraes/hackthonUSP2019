@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
   #root {
-    background: linear-gradient(45deg, #0c3e88fa, #283761ba);
+    background: linear-gradient(0deg, #0c3e88fa, #283761ba);
   }
   * {
     font-family: Open Sans, sans-serif;
