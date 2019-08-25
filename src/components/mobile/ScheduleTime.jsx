@@ -8,7 +8,6 @@ export const MAX_SLOTS = 100;
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 105px);
-  margin-top: 30px;
 `
 
 const CardWrapper = styled.div`

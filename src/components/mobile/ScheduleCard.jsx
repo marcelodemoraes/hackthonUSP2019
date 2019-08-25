@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ButtonBase, Dialog } from '@material-ui/core'
+import { ButtonBase, Dialog, FormControlLabel, Checkbox } from '@material-ui/core'
 import { navigate } from '@reach/router'
 
 import { MAX_SLOTS } from './ScheduleTime'
@@ -60,7 +60,7 @@ const Modal = styled(Dialog)`
 
 const ModalWrapper = styled.div`
   min-height: 300px;
-  font-size: 34px;
+  font-size: 30px;
   background-color: #0c3e8824;
   padding: 15px;
   height: 100%;
@@ -69,6 +69,9 @@ const ModalWrapper = styled.div`
   align-items: center;
   border-radius: 15px;
   justify-content: space-around;
+  .MuiFormControlLabel-label {
+    font-size: 17px;
+  }
   > span {
     text-align: center;
   }
@@ -77,6 +80,7 @@ const ModalWrapper = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   > button {
     margin: 5px 0;
@@ -85,6 +89,7 @@ const ButtonWrapper = styled.div`
 
 const ScheduleCard = ({ slots, time }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
+  const [isVegan, setIsVegan] = React.useState(false);
   return (
     <>
       <Card full={slots >= MAX_SLOTS} disabled={slots >= MAX_SLOTS} onClick={() => setModalOpen(true)}>
@@ -99,13 +104,19 @@ const ScheduleCard = ({ slots, time }) => {
         <ModalWrapper>
           <span> Deseja agendar para as {time}h? </span>
           <ButtonWrapper>
-            <Button variant={'contained'} color={'primary'} onClick={() => {
+            <FormControlLabel
+              control={
+                <Checkbox checked={isVegan} color={'primary'} onChange={() => setIsVegan(!isVegan)} />
+              }
+              label="Refeição Vegetariana"
+            />
+            <Button fullWidth variant={'contained'} color={'primary'} onClick={() => {
               setData({ slots, time })
               navigate('/mobile/scheduled')
             }}>
               Confirmar
             </Button>
-            <Button variant={'contained'} color={'secondary'} onClick={() => setModalOpen(false)}>
+            <Button fullWidth variant={'contained'} color={'secondary'} onClick={() => setModalOpen(false)}>
               Cancelar
             </Button>
           </ButtonWrapper>
