@@ -60,8 +60,7 @@ const App = () => {
       <GlobalStyle/>
       <Router>
         <ScheduleTime path={'/mobile/schedule'}/>
-        <ScheduledTime path={'/mobile/scheduled'}/>
-        <NotFound default/>
+        <ScheduledTime path={'/mobile/scheduled'} default/>
       </Router>
     </MuiThemeProvider>
   )
